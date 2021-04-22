@@ -1,11 +1,22 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const mongoose = require('mongoose')
+const session = require('express-session')
+var passport = require('passport');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var userRouter = require('./routes/users');
+var customerRouter = require('./routes/customers');
+var serviceProviderRouter = require('./routes/serviceProviders');
+var bookingRouter = require('./routes/bookings');
+var formfeedbackRouter = require('./routes/formfeedback');
+var config = require('./config');
+const url = config.mongoUrl;
+const connect = mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true });
+connect.then((db) => {
+  console.log('Connected correctly to server');
+}, (err) => { console.log(err) });
 
 var app = express();
 
@@ -16,11 +27,18 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use(passport.initialize());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users',userRouter);
+app.use('/customers',customerRouter);
+app.use('/serviceProviders',serviceProviderRouter);
+app.use('/formfeedback',formfeedbackRouter);
+app.use('/booking',bookingRouter);
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
