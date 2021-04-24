@@ -34,9 +34,7 @@ router.post('/signup', cors.corsWithOptions, (req, res, next) => {
         if (req.body.admin) {
           user.admin = req.body.admin;
         }
-        if (req.body.hostel) {
-          user.hostel = req.body.hostel;
-        }
+        
         user.save((err, user) => {
           if (err) {
             res.statusCode = 500;
