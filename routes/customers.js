@@ -21,7 +21,7 @@ customerRouter.route('/')
             .catch((err)=>next(err));
 })
 
-.post(cors.corsWithOptions,authenticate.verifyUser,(req,res,next)=>{
+.post(cors.corsWithOptions,(req,res,next)=>{
     Customers.create(req.body)
     .then((customers)=>{
         res.statusCode = 200;
