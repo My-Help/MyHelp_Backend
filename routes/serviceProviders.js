@@ -21,7 +21,7 @@ serviceProviderRouter.route('/')
             .catch((err)=>next(err));
 })
 
-.post(cors.corsWithOptions,authenticate.verifyUser,(req,res,next)=>{
+.post(cors.corsWithOptions,(req,res,next)=>{
     ServiceProviders.create(req.body)
     .then((serviceproviders)=>{
         res.statusCode = 200;
