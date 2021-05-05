@@ -52,7 +52,7 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
 Open `config.js` then edit it with your settings. You will need:
 
-- secretKey: <`Your Secret Key`>,
+- secretKey: <`Your Secret Key`>
 - mongoUrl : 'mongodb://localhost:27017/myhelpDB'
 
 ## Running the project
