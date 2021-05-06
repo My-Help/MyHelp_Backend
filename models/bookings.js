@@ -22,6 +22,14 @@ var Bookings = new Schema({
         type:String,
         required:true
     },
+    Completed:{
+        type:Boolean,
+        default:false
+    },
+    Feedback:{
+        type:Boolean,
+        default:false
+    }
 });
 
 const Booking = mongoose.model("Booking",Bookings);
