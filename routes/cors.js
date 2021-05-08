@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-const whitelist = ['https://quirky-pike-20120b.netlify.app'];
+const whitelist = ['https://myhelp.netlify.app'];
 var corsOptionsDelegate = (req, callback) => {
     var corsOptions;
     console.log(req.header('Origin'));
